@@ -6,7 +6,7 @@ public class SplashWindow : Form
 {
     PictureBox logo;
     Label text;
-    Timer timer;
+    System.Windows.Forms.Timer timer;
     int step;
     public SplashWindow()
     {
