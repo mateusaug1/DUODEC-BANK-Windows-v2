@@ -19,7 +19,7 @@ public class SplashWindow : Form
         if(System.IO.File.Exists(p)) logo.Image=Image.FromFile(p);
         text=new Label{Bounds=new Rectangle(20,300,380,50),TextAlign=ContentAlignment.MiddleCenter,Font=new Font("Segoe UI",16),ForeColor=Color.FromArgb(35,35,35)};
         Controls.Add(logo); Controls.Add(text);
-        timer=new Timer{Interval=45}; timer.Tick+=Animate; Shown+=(_,_)=>timer.Start();
+        timer=new System.Windows.Forms.Timer{Interval=45}; timer.Tick+=Animate; Shown+=(_,_)=>timer.Start();
     }
     void Animate(object? s,EventArgs e)
     {
