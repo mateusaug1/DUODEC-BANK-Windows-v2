@@ -1,0 +1,24 @@
+name: Build DUODEC BANK
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restaurar
+        run: dotnet restore DUODEC-BANK/DUODEC-BANK.csproj
+      - name: Gerar EXE
+        run: |
+          dotnet publish DUODEC-BANK/DUODEC-BANK.csproj `
+            -c Release -r win-x64 --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:IncludeNativeLibrariesForSelfExtract=true `
+            -o publish
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DUODEC-BANK-Windows
+          path: publish/
